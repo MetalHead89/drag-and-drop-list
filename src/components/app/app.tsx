@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 // import { Provider } from 'react-redux';
-import List from '../components/list/list';
+import List from '../list/list';
 // import store from './store/store';
 
 const root = document.querySelector('.app');

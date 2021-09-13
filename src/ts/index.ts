@@ -1,2 +1,2 @@
 require.context('../', true, /\.scss$/);
-import './app';
+import '../components/app/app';
