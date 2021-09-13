@@ -6,7 +6,7 @@ const StylelintPlugin = require('stylelint-webpack-plugin');
 
 module.exports = {
   entry: {
-    main: path.resolve(__dirname, './src/ts/index.tsx'),
+    main: path.resolve(__dirname, './src/ts/index.ts'),
   },
   output: {
     path: path.resolve(__dirname, './dist'),

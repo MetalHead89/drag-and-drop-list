@@ -2,7 +2,7 @@
   "name": "drag-and-drop-list",
   "version": "0.0.1",
   "description": "Практика создания сортируемых drag and drop списков на React",
-  "main": "./src/ts/index.tsx",
+  "main": "./src/ts/index.ts",
   "scripts": {
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
@@ -21,6 +21,7 @@
     "@types/react": "^17.0.8",
     "@types/react-dom": "^17.0.5",
     "@types/react-router-dom": "^5.1.7",
+    "@types/webpack-env": "^1.16.2",
     "autoprefixer": "^10.2.6",
     "babel-loader": "^8.2.2",
     "clean-webpack-plugin": "*",
