@@ -1,0 +1,52 @@
+{
+  "name": "drag-and-drop-list",
+  "version": "0.0.1",
+  "description": "Практика создания сортируемых drag and drop списков на React",
+  "main": "./src/ts/index.tsx",
+  "scripts": {
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production",
+    "start": "webpack serve --mode development --open"
+  },
+  "keywords": [
+    "react",
+    "drag-and-drop",
+    "sortable-list"
+  ],
+  "author": "Vitalij Bakalov <bakalov.vitaliy@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.14.3",
+    "@babel/preset-env": "^7.14.4",
+    "@types/react": "^17.0.8",
+    "@types/react-dom": "^17.0.5",
+    "@types/react-router-dom": "^5.1.7",
+    "autoprefixer": "^10.2.6",
+    "babel-loader": "^8.2.2",
+    "clean-webpack-plugin": "*",
+    "css-loader": "^5.2.6",
+    "cssnano": "^5.0.5",
+    "html-webpack-plugin": "^5.3.1",
+    "mini-css-extract-plugin": "^1.6.0",
+    "node-sass": "^6.0.0",
+    "postcss-loader": "^5.3.0",
+    "prettier": "^2.3.0",
+    "sass-loader": "^11.1.1",
+    "style-loader": "^2.0.0",
+    "stylelint": "^13.13.1",
+    "stylelint-webpack-plugin": "^2.2.2",
+    "ts-loader": "^9.2.2",
+    "typescript": "^4.3.2",
+    "webpack": "^5.38.1",
+    "webpack-cli": "^4.7.0",
+    "webpack-dev-server": "^4.2.0"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-redux": "^7.2.4",
+    "react-router-dom": "^5.2.0",
+    "redux": "^4.1.0"
+  }
+}
