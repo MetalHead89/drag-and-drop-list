@@ -3,8 +3,12 @@ interface IAction {
   args?: any;
 }
 
+interface IState {
+  list: IList;
+}
+
 interface IList {
   items: string[];
 }
 
-export { IList, IAction };
+export { IList, IAction, IState };
