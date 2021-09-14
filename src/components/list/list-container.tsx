@@ -3,9 +3,9 @@ import { IState } from '../../ts/interfaces';
 import List from './list';
 
 const mapStateToProps = (state: IState) => {
-  return { list: state.list };
+  return { items: state.list.items };
 };
 
-const ListContainer = connect(mapStateToProps, null)(List);
+const ListContainer = connect(mapStateToProps)(List);
 
 export default ListContainer;

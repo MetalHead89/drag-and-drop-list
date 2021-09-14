@@ -1,8 +1,13 @@
 import React from 'react';
-// import ListsContainerContainer from '../lists-container/lists-container-container';
+import { IList } from '../../ts/interfaces';
+import Item from '../item/item';
 
-const List = (): JSX.Element => {
-  return <div className="list">{/* <ListsContainerContainer /> */}</div>;
+const List = (list: IList): JSX.Element => {
+  const items = list.items.map((item) => {
+    return <Item {...item} />;
+  });
+
+  return <ul className="list">{items}</ul>;
 };
 
 export default List;
