@@ -1,17 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import { Provider } from 'react-redux';
+import { Provider } from 'react-redux';
 import List from '../list/list';
-// import store from './store/store';
+import store from '../../ts/store/store';
 
 const root = document.querySelector('.app');
 
 if (root !== null) {
   ReactDOM.render(
-    <List />,
-    // <Provider store={store}>
-    //   {/* <App /> */}
-    // </Provider>,
+    <Provider store={store}>
+      <List />
+    </Provider>,
     root
   );
 }
