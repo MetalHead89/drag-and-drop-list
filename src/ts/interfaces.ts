@@ -8,7 +8,11 @@ interface IState {
 }
 
 interface IList {
-  items: string[];
+  items: IItem[];
 }
 
-export { IList, IAction, IState };
+interface IItem {
+  text: string;
+}
+
+export { IList, IAction, IState, IItem };
