@@ -1,11 +1,16 @@
-import { IAction, IState } from '../../interfaces';
+import { IAction, IList } from '../../interfaces';
 const initialState = {
-  list: {
-    items: ['item1', 'item2', 'item3', 'item4', 'item5', 'item6'],
-  },
+  items: [
+    { text: 'item1' },
+    { text: 'item2' },
+    { text: 'item3' },
+    { text: 'item4' },
+    { text: 'item5' },
+    { text: 'item6' },
+  ],
 };
 
-const listReducer = (state: IState = initialState, action: IAction): IState => {
+const listReducer = (state: IList = initialState, action: IAction): IList => {
   switch (action.type) {
     default:
       return state;
