@@ -13,6 +13,8 @@ interface IList {
 
 interface IItem {
   id: number;
+  serialNumber: number;
+  isDragged: boolean;
   text: string;
 }
 
