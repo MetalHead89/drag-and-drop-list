@@ -11,10 +11,26 @@ import { IItem } from '../../ts/interfaces';
 
 function handleItemDragStart(event: React.DragEvent) {
   // const target = event.target;
-
   // if (target instanceof HTMLDivElement) {
   //   target.classList.add('item_transparent')
   // }
+}
+
+function handleItemDragEnter(event: React.DragEvent) {
+  console.dir(event);
+  const target = event.target;
+
+  if (target instanceof HTMLDivElement) {
+    target.style.border = 'black 1px solid';
+  }
+}
+
+function handleItemDragLeave(event: React.DragEvent) {
+  const target = event.target;
+
+  if (target instanceof HTMLDivElement) {
+    target.style.border = 'none';
+  }
 }
 
 function handleItemDragEnd(event: React.DragEvent) {
@@ -31,6 +47,8 @@ const Item = (item: IItem): JSX.Element => {
       className="item"
       draggable="true"
       // onDrag={handleItemDrag}
+      onDragEnter={handleItemDragEnter}
+      onDragLeave={handleItemDragLeave}
       onDragStart={handleItemDragStart}
       onDragEnd={handleItemDragEnd}
     >
