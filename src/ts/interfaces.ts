@@ -12,6 +12,7 @@ interface IList {
 }
 
 interface IItem {
+  id: number;
   text: string;
 }
 

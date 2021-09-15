@@ -1,12 +1,12 @@
 import { IAction, IList } from '../../interfaces';
 const initialState = {
   items: [
-    { text: 'item1' },
-    { text: 'item2' },
-    { text: 'item3' },
-    { text: 'item4' },
-    { text: 'item5' },
-    { text: 'item6' },
+    { id: 1, text: 'item1' },
+    { id: 2, text: 'item2' },
+    { id: 3, text: 'item3' },
+    { id: 4, text: 'item4' },
+    { id: 5, text: 'item5' },
+    { id: 6, text: 'item6' },
   ],
 };
 
