@@ -4,7 +4,7 @@ import Item from '../item/item';
 
 const List = (list: IList): JSX.Element => {
   const items = list.items.map((item) => {
-    return <Item {...item} />;
+    return <Item key={item.id} {...item} />;
   });
 
   return <ul className="list">{items}</ul>;
