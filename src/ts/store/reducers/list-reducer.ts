@@ -1,4 +1,6 @@
 import { IAction, IItem, IList } from '../../interfaces';
+const ITEM_IS_DRAG = 'ITEM-IS-DRAG';
+
 const initialState = {
   items: [
     { id: 1, serialNumber: 1, isDragged: false, text: 'item1' },
@@ -20,6 +22,14 @@ function sortItems(items: IItem[]) {
 
 const listReducer = (state: IList = initialState, action: IAction): IList => {
   switch (action.type) {
+    case ITEM_IS_DRAG: {
+      return {
+        ...state,
+        items: state.items.map((item) =>
+          item.id === action.args.id ? { ...item, isDragged: true } : item
+        ),
+      };
+    }
     default:
       return state;
   }
