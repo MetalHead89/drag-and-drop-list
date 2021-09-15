@@ -1,4 +1,4 @@
-import { IAction, IList } from '../../interfaces';
+import { IAction, IItem, IList } from '../../interfaces';
 const initialState = {
   items: [
     { id: 1, serialNumber: 1, isDragged: false, text: 'item1' },
@@ -9,6 +9,14 @@ const initialState = {
     { id: 6, serialNumber: 6, isDragged: false, text: 'item6' },
   ],
 };
+
+function sortItems(items: IItem[]) {
+  const sortedItems = [...items];
+
+  sortedItems.sort(
+    (firstItem, secondItem) => firstItem.serialNumber - secondItem.serialNumber
+  );
+}
 
 const listReducer = (state: IList = initialState, action: IAction): IList => {
   switch (action.type) {
