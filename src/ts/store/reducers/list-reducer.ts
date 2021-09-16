@@ -18,7 +18,7 @@ const itemIsDragCreator = (id: number): IAction => ({
   args: { id },
 });
 
-const itemIsReleased = (id: number): IAction => ({
+const itemIsReleasedCreator = (id: number): IAction => ({
   type: ITEM_IS_RELEASED,
   args: { id },
 });
@@ -58,4 +58,4 @@ const listReducer = (
 };
 
 export default listReducer;
-export { itemIsDragCreator, itemIsReleased };
+export { itemIsDragCreator, itemIsReleasedCreator };
