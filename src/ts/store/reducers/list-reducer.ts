@@ -1,5 +1,6 @@
 import { IAction, IItem, IListState } from '../../interfaces';
 const ITEM_IS_DRAG = 'ITEM-IS-DRAG';
+const ITEM_IS_DROPPED = 'ITEM-IS-DROPPED';
 
 const initialState = {
   items: [
@@ -14,6 +15,11 @@ const initialState = {
 
 const itemIsDragCreator = (id: number): IAction => ({
   type: ITEM_IS_DRAG,
+  args: { id },
+});
+
+const itemIsDropped = (id: number): IAction => ({
+  type: ITEM_IS_DROPPED,
   args: { id },
 });
 
@@ -38,10 +44,18 @@ const listReducer = (
         ),
       };
     }
+    case ITEM_IS_DROPPED: {
+      return {
+        ...state,
+        items: state.items.map((item) =>
+          item.id === action.args.id ? { ...item, isDragged: false } : item
+        ),
+      };
+    }
     default:
       return state;
   }
 };
 
 export default listReducer;
-export { itemIsDragCreator };
+export { itemIsDragCreator, itemIsDropped };

@@ -32,18 +32,28 @@ function handleItemDragLeave(event: React.DragEvent) {
   }
 }
 
-function handleItemDragEnd(event: React.DragEvent) {
-  const target = event.target;
+// function handleItemDragEnd(event: React.DragEvent) {
+//   const target = event.target;
 
-  if (target instanceof HTMLDivElement) {
-    target.classList.remove('item_transparent');
-  }
-}
+//   if (target instanceof HTMLDivElement) {
+//     target.classList.remove('item_transparent');
+//   }
+// }
 
 const Item = (item: IItem): JSX.Element => {
   const handleItemDragStart = () => {
     item.dragItem(item.id);
   };
+
+  function handleItemDragEnd(event: React.DragEvent) {
+    const target = event.target;
+
+    if (target instanceof HTMLDivElement) {
+      target.classList.remove('item_transparent');
+    }
+
+    item.dropItem(item.id);
+  }
 
   return (
     <div

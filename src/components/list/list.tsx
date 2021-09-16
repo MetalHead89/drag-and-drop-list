@@ -3,8 +3,16 @@ import { IList } from '../../ts/interfaces';
 import Item from '../item/item';
 
 const List = (list: IList): JSX.Element => {
+  console.dir(list.items);
   const items = list.items.map((item) => {
-    return <Item key={item.id} {...item} dragItem={list.dragItem} />;
+    return (
+      <Item
+        key={item.id}
+        {...item}
+        dragItem={list.dragItem}
+        dropItem={list.dropItem}
+      />
+    );
   });
 
   return <ul className="list">{items}</ul>;
