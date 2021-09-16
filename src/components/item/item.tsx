@@ -17,7 +17,6 @@ import { IItem } from '../../ts/interfaces';
 // }
 
 function handleItemDragEnter(event: React.DragEvent) {
-  console.dir(event);
   const target = event.target;
 
   if (target instanceof HTMLDivElement) {
