@@ -15,7 +15,7 @@ interface IListState {
   items: IItemState[];
 }
 
-interface IList {
+interface IList extends IItemMethods {
   items: IItem[];
 }
 
