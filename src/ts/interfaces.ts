@@ -3,6 +3,10 @@ interface IAction {
   args?: any;
 }
 
+interface IDispatch {
+  (action: IAction): void;
+}
+
 interface IState {
   list: IList;
 }
@@ -18,4 +22,4 @@ interface IItem {
   text: string;
 }
 
-export { IList, IAction, IState, IItem };
+export { IList, IAction, IState, IItem, IDispatch };
