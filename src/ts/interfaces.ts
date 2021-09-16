@@ -11,15 +11,25 @@ interface IState {
   list: IList;
 }
 
+interface IListState {
+  items: IItemState[];
+}
+
 interface IList {
   items: IItem[];
 }
 
-interface IItem {
+interface IItemMethods {
+  dragItem: (id: number) => void;
+}
+
+interface IItemState {
   id: number;
   serialNumber: number;
   isDragged: boolean;
   text: string;
 }
 
-export { IList, IAction, IState, IItem, IDispatch };
+interface IItem extends IItemState, IItemMethods {}
+
+export { IListState, IList, IAction, IState, IItem, IDispatch };
