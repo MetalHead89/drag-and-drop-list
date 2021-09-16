@@ -9,12 +9,12 @@ import { IItem } from '../../ts/interfaces';
 //   }
 // }
 
-function handleItemDragStart(event: React.DragEvent) {
-  // const target = event.target;
-  // if (target instanceof HTMLDivElement) {
-  //   target.classList.add('item_transparent')
-  // }
-}
+// function handleItemDragStart(event: React.DragEvent) {
+//   // const target = event.target;
+//   // if (target instanceof HTMLDivElement) {
+//   //   target.classList.add('item_transparent')
+//   // }
+// }
 
 function handleItemDragEnter(event: React.DragEvent) {
   console.dir(event);
@@ -42,6 +42,10 @@ function handleItemDragEnd(event: React.DragEvent) {
 }
 
 const Item = (item: IItem): JSX.Element => {
+  const handleItemDragStart = () => {
+    item.dragItem(item.id);
+  };
+
   return (
     <div
       className="item"
