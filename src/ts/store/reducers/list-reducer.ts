@@ -1,4 +1,4 @@
-import { IAction, IItem, IList } from '../../interfaces';
+import { IAction, IItem, IListState } from '../../interfaces';
 const ITEM_IS_DRAG = 'ITEM-IS-DRAG';
 
 const initialState = {
@@ -12,6 +12,11 @@ const initialState = {
   ],
 };
 
+const itemIsDragCreator = (id: number): IAction => ({
+  type: ITEM_IS_DRAG,
+  args: { id },
+});
+
 function sortItems(items: IItem[]) {
   const sortedItems = [...items];
 
@@ -20,7 +25,10 @@ function sortItems(items: IItem[]) {
   );
 }
 
-const listReducer = (state: IList = initialState, action: IAction): IList => {
+const listReducer = (
+  state: IListState = initialState,
+  action: IAction
+): IListState => {
   switch (action.type) {
     case ITEM_IS_DRAG: {
       return {
@@ -36,3 +44,4 @@ const listReducer = (state: IList = initialState, action: IAction): IList => {
 };
 
 export default listReducer;
+export { itemIsDragCreator };
