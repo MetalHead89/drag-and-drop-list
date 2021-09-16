@@ -52,7 +52,7 @@ const Item = (item: IItem): JSX.Element => {
       target.classList.remove('item_transparent');
     }
 
-    item.dropItem(item.id);
+    item.itemReleased(item.id);
   }
 
   return (

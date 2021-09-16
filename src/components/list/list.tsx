@@ -10,7 +10,7 @@ const List = (list: IList): JSX.Element => {
         key={item.id}
         {...item}
         dragItem={list.dragItem}
-        dropItem={list.dropItem}
+        itemReleased={list.itemReleased}
       />
     );
   });

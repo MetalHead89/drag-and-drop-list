@@ -21,7 +21,7 @@ interface IList extends IItemMethods {
 
 interface IItemMethods {
   dragItem: (id: number) => void;
-  dropItem: (id: number) => void;
+  itemReleased: (id: number) => void;
 }
 
 interface IItemState {

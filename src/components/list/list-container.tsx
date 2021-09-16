@@ -3,7 +3,7 @@ import { IDispatch, IState } from '../../ts/interfaces';
 import List from './list';
 import {
   itemIsDragCreator,
-  itemIsDropped,
+  itemIsReleased,
 } from '../../ts/store/reducers/list-reducer';
 
 const mapStateToProps = (state: IState) => {
@@ -15,8 +15,8 @@ const mapDispatchToProps = (dispatch: IDispatch) => {
     dragItem: (id: number) => {
       dispatch(itemIsDragCreator(id));
     },
-    dropItem: (id: number) => {
-      dispatch(itemIsDropped(id));
+    itemReleased: (id: number) => {
+      dispatch(itemIsReleased(id));
     },
   };
 };
