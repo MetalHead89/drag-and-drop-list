@@ -41,8 +41,30 @@ function handleItemDragLeave(event: React.DragEvent) {
 // }
 
 const Item = (item: IItem): JSX.Element => {
-  const handleItemDragStart = () => {
-    item.dragItem(item.id);
+  const handleItemDragStart = (event: React.DragEvent) => {
+    const target = event.target;
+
+    if (target instanceof HTMLDivElement) {
+      target.classList.remove('item_transparent');
+      event.dataTransfer.effectAllowed = 'move';
+      event.dataTransfer.setData('text/html', target.innerHTML);
+
+      item.dragItem(item.id);
+    }
+  };
+
+  const handleItemDragOver = (event: React.DragEvent) => {
+    event.preventDefault();
+  };
+
+  const handleItemDrop = (event: React.DragEvent) => {
+    event.stopPropagation();
+
+    const target = event.target;
+
+    if (target instanceof HTMLDivElement) {
+      target.innerHTML = event.dataTransfer.getData('text/html');
+    }
   };
 
   function handleItemDragEnd(event: React.DragEvent) {
@@ -61,6 +83,8 @@ const Item = (item: IItem): JSX.Element => {
       draggable="true"
       // onDrag={handleItemDrag}
       onDragEnter={handleItemDragEnter}
+      onDragOver={handleItemDragOver}
+      onDrop={handleItemDrop}
       onDragLeave={handleItemDragLeave}
       onDragStart={handleItemDragStart}
       onDragEnd={handleItemDragEnd}
