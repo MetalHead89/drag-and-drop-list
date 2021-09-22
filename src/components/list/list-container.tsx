@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import { IDispatch, IState } from '../../ts/interfaces';
 import List from './list';
 import {
+  changedOrderOfItemsCreator,
   itemIsDragCreator,
   itemIsReleasedCreator,
 } from '../../ts/store/reducers/list-reducer';
@@ -17,6 +18,9 @@ const mapDispatchToProps = (dispatch: IDispatch) => {
     },
     itemReleased: (id: number) => {
       dispatch(itemIsReleasedCreator(id));
+    },
+    itemChangedPosition: (serialNumber: number) => {
+      dispatch(changedOrderOfItemsCreator(serialNumber));
     },
   };
 };

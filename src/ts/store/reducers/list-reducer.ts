@@ -24,23 +24,34 @@ const itemIsReleasedCreator = (id: number): IAction => ({
   args: { id },
 });
 
-const changedOrderOfItemsCreator = (from: number, to: number): IAction => ({
+const changedOrderOfItemsCreator = (serialNumber: number): IAction => ({
   type: CHANGED_ORDER_OF_ITEMS,
-  args: { from, to },
+  args: { serialNumber },
 });
 
-function changeOrderOfItems(items: IItemState[], from: number, to: number): IItemState[] {
-  return sortItems(items.map((item) => {
-    if (item.id === from ) {
-      item.serialNumber = to;
-    } else if (item.serialNumber > from && item.serialNumber < to ) {
-      item.serialNumber = item.serialNumber - 1
-    } else if (item.serialNumber > to ) {
-      item.serialNumber = item.serialNumber + 1
-    }
+function changeOrderOfItems(
+  items: IItemState[],
+  serialNumber: number
+): IItemState[] {
+  return sortItems(
+    items.map((item) => {
+      let droppedPosition = 0;
 
-    return item;
-  }))
+      if (item.isDragged) {
+        droppedPosition = item.serialNumber;
+        item.serialNumber = serialNumber;
+      } else if (
+        item.serialNumber > droppedPosition &&
+        item.serialNumber < serialNumber
+      ) {
+        item.serialNumber = item.serialNumber - 1;
+      } else if (item.serialNumber > serialNumber) {
+        item.serialNumber = item.serialNumber + 1;
+      }
+
+      return item;
+    })
+  );
 }
 
 function sortItems(items: IItemState[]) {
@@ -50,7 +61,7 @@ function sortItems(items: IItemState[]) {
     (firstItem, secondItem) => firstItem.serialNumber - secondItem.serialNumber
   );
 
-  return sortedItems
+  return sortedItems;
 }
 
 const listReducer = (
@@ -75,7 +86,10 @@ const listReducer = (
       };
     }
     case CHANGED_ORDER_OF_ITEMS: {
-      return { ...state, items: changeOrderOfItems(state.items, action.args.from, action.args.to)}
+      return {
+        ...state,
+        items: changeOrderOfItems(state.items, action.args.serialNumber),
+      };
     }
     default:
       return state;

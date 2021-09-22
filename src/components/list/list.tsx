@@ -10,6 +10,7 @@ const List = (list: IList): JSX.Element => {
         {...item}
         dragItem={list.dragItem}
         itemReleased={list.itemReleased}
+        itemChangedPosition={list.itemChangedPosition}
       />
     );
   });

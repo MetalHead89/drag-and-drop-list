@@ -19,21 +19,21 @@ import { IItem } from '../../ts/interfaces';
 
 const Item = (item: IItem): JSX.Element => {
   const handleItemDragStart = (event: React.DragEvent) => {
-    // const target = event.target;
-    // if (target instanceof HTMLDivElement) {
-    //   target.classList.remove('item_transparent');
-    //   event.dataTransfer.effectAllowed = 'move';
-    //   event.dataTransfer.setData('text/html', target.innerHTML);
-    //   item.dragItem(item.id);
-    // }
+    const target = event.target;
+
+    if (target instanceof HTMLDivElement) {
+      // target.classList.remove('item_transparent');
+      // event.dataTransfer.effectAllowed = 'move';
+      // event.dataTransfer.setData('text/html', target.innerHTML);
+      item.dragItem(item.id);
+    }
   };
 
   const handleItemDragEnter = (event: React.DragEvent) => {
     event.preventDefault();
     event.stopPropagation();
 
-    console.dir(item.serialNumber);
-    // event.dataTransfer.dropEffect = 'move';
+    item.itemChangedPosition(item.serialNumber);
   };
 
   const handleItemDragOver = (event: React.DragEvent) => {
