@@ -33,4 +33,4 @@ interface IItemState {
 
 interface IItem extends IItemState, IItemMethods {}
 
-export { IListState, IList, IAction, IState, IItem, IDispatch };
+export { IListState, IList, IAction, IState, IItemState, IItem, IDispatch };

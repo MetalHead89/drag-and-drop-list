@@ -1,6 +1,7 @@
-import { IAction, IItem, IListState } from '../../interfaces';
+import { IAction, IItemState, IListState } from '../../interfaces';
 const ITEM_IS_DRAG = 'ITEM-IS-DRAG';
 const ITEM_IS_RELEASED = 'ITEM-IS-RELEASED';
+const CHANGED_ORDER_OF_ITEMS = 'CHANGED-ORDER-OF-ITEMS';
 
 const initialState = {
   items: [
@@ -23,12 +24,33 @@ const itemIsReleasedCreator = (id: number): IAction => ({
   args: { id },
 });
 
-function sortItems(items: IItem[]) {
+const changedOrderOfItemsCreator = (from: number, to: number): IAction => ({
+  type: CHANGED_ORDER_OF_ITEMS,
+  args: { from, to },
+});
+
+function changeOrderOfItems(items: IItemState[], from: number, to: number): IItemState[] {
+  return sortItems(items.map((item) => {
+    if (item.id === from ) {
+      item.serialNumber = to;
+    } else if (item.serialNumber > from && item.serialNumber < to ) {
+      item.serialNumber = item.serialNumber - 1
+    } else if (item.serialNumber > to ) {
+      item.serialNumber = item.serialNumber + 1
+    }
+
+    return item;
+  }))
+}
+
+function sortItems(items: IItemState[]) {
   const sortedItems = [...items];
 
   sortedItems.sort(
     (firstItem, secondItem) => firstItem.serialNumber - secondItem.serialNumber
   );
+
+  return sortedItems
 }
 
 const listReducer = (
@@ -52,10 +74,13 @@ const listReducer = (
         ),
       };
     }
+    case CHANGED_ORDER_OF_ITEMS: {
+      return { ...state, items: changeOrderOfItems(state.items, action.args.from, action.args.to)}
+    }
     default:
       return state;
   }
 };
 
 export default listReducer;
-export { itemIsDragCreator, itemIsReleasedCreator };
+export { itemIsDragCreator, itemIsReleasedCreator, changedOrderOfItemsCreator };

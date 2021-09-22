@@ -20,20 +20,25 @@ import { IItem } from '../../ts/interfaces';
 const Item = (item: IItem): JSX.Element => {
   const handleItemDragStart = (event: React.DragEvent) => {
     // const target = event.target;
-
     // if (target instanceof HTMLDivElement) {
     //   target.classList.remove('item_transparent');
     //   event.dataTransfer.effectAllowed = 'move';
     //   event.dataTransfer.setData('text/html', target.innerHTML);
-
     //   item.dragItem(item.id);
     // }
+  };
+
+  const handleItemDragEnter = (event: React.DragEvent) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    console.dir(item.serialNumber);
+    // event.dataTransfer.dropEffect = 'move';
   };
 
   const handleItemDragOver = (event: React.DragEvent) => {
     event.preventDefault();
     event.stopPropagation();
-    // event.dataTransfer.dropEffect = 'move';
   };
 
   function handleItemDragEnd(event: React.DragEvent) {
@@ -64,7 +69,7 @@ const Item = (item: IItem): JSX.Element => {
       className="item"
       draggable="true"
       // onDrag={handleItemDrag}
-      // onDragEnter={handleItemDragEnter}
+      onDragEnter={handleItemDragEnter}
       onDragOver={handleItemDragOver}
       onDrop={handleItemDrop}
       // onDragLeave={handleItemDragLeave}
