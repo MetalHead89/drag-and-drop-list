@@ -33,25 +33,39 @@ function changeOrderOfItems(
   items: IItemState[],
   serialNumber: number
 ): IItemState[] {
-  return sortItems(
-    items.map((item) => {
-      let droppedPosition = 0;
+  const draggedItemIndex = items.findIndex((item) => item.isDragged);
+  const draggedItem = items.find((item) => item.isDragged);
 
-      if (item.isDragged) {
-        droppedPosition = item.serialNumber;
-        item.serialNumber = serialNumber;
-      } else if (
-        item.serialNumber > droppedPosition &&
-        item.serialNumber < serialNumber
-      ) {
-        item.serialNumber = item.serialNumber - 1;
-      } else if (item.serialNumber > serialNumber) {
-        item.serialNumber = item.serialNumber + 1;
-      }
+  if (draggedItem) {
+    items.splice(draggedItemIndex, 1);
+    items.splice(serialNumber, 0, draggedItem);
+  }
 
-      return item;
-    })
-  );
+  let serialNumberCounter = 1;
+  return items.map((item) => {
+    item.serialNumber = serialNumberCounter;
+    serialNumberCounter++;
+    return item;
+  });
+  // return sortItems(
+  //   items.map((item) => {
+  //     let droppedPosition = 0;
+
+  //     if (item.isDragged) {
+  //       droppedPosition = item.serialNumber;
+  //       item.serialNumber = serialNumber;
+  //     } else if (
+  //       item.serialNumber > droppedPosition &&
+  //       item.serialNumber < serialNumber
+  //     ) {
+  //       item.serialNumber = item.serialNumber - 1;
+  //     } else if (item.serialNumber > serialNumber) {
+  //       item.serialNumber = item.serialNumber + 1;
+  //     }
+
+  //     return item;
+  //   })
+  // );
 }
 
 function sortItems(items: IItemState[]) {
