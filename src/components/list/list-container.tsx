@@ -19,8 +19,8 @@ const mapDispatchToProps = (dispatch: IDispatch) => {
     itemReleased: (id: number) => {
       dispatch(itemIsReleasedCreator(id));
     },
-    itemChangedPosition: (serialNumber: number) => {
-      dispatch(changedOrderOfItemsCreator(serialNumber));
+    itemChangedPosition: (targetId: number) => {
+      dispatch(changedOrderOfItemsCreator(targetId));
     },
   };
 };

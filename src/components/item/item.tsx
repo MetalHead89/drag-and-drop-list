@@ -33,7 +33,7 @@ const Item = (item: IItem): JSX.Element => {
     event.preventDefault();
     event.stopPropagation();
 
-    item.itemChangedPosition(item.serialNumber);
+    item.itemChangedPosition(item.id);
   };
 
   const handleItemDragOver = (event: React.DragEvent) => {

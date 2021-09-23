@@ -24,58 +24,26 @@ const itemIsReleasedCreator = (id: number): IAction => ({
   args: { id },
 });
 
-const changedOrderOfItemsCreator = (serialNumber: number): IAction => ({
+const changedOrderOfItemsCreator = (targetId: number): IAction => ({
   type: CHANGED_ORDER_OF_ITEMS,
-  args: { serialNumber },
+  args: { targetId },
 });
 
 function changeOrderOfItems(
   items: IItemState[],
-  serialNumber: number
+  targetId: number
 ): IItemState[] {
+  const targetIndex = items.findIndex((item) => item.id === targetId);
   const draggedItemIndex = items.findIndex((item) => item.isDragged);
   const draggedItem = items.find((item) => item.isDragged);
+  const modifiedItems = [...items];
 
   if (draggedItem) {
-    items.splice(draggedItemIndex, 1);
-    items.splice(serialNumber, 0, draggedItem);
+    modifiedItems.splice(draggedItemIndex, 1);
+    modifiedItems.splice(targetIndex, 0, draggedItem);
   }
 
-  let serialNumberCounter = 1;
-  return items.map((item) => {
-    item.serialNumber = serialNumberCounter;
-    serialNumberCounter++;
-    return item;
-  });
-  // return sortItems(
-  //   items.map((item) => {
-  //     let droppedPosition = 0;
-
-  //     if (item.isDragged) {
-  //       droppedPosition = item.serialNumber;
-  //       item.serialNumber = serialNumber;
-  //     } else if (
-  //       item.serialNumber > droppedPosition &&
-  //       item.serialNumber < serialNumber
-  //     ) {
-  //       item.serialNumber = item.serialNumber - 1;
-  //     } else if (item.serialNumber > serialNumber) {
-  //       item.serialNumber = item.serialNumber + 1;
-  //     }
-
-  //     return item;
-  //   })
-  // );
-}
-
-function sortItems(items: IItemState[]) {
-  const sortedItems = [...items];
-
-  sortedItems.sort(
-    (firstItem, secondItem) => firstItem.serialNumber - secondItem.serialNumber
-  );
-
-  return sortedItems;
+  return modifiedItems;
 }
 
 const listReducer = (
@@ -102,7 +70,7 @@ const listReducer = (
     case CHANGED_ORDER_OF_ITEMS: {
       return {
         ...state,
-        items: changeOrderOfItems(state.items, action.args.serialNumber),
+        items: changeOrderOfItems(state.items, action.args.targetId),
       };
     }
     default:
