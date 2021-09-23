@@ -27,7 +27,6 @@ interface IItemMethods {
 
 interface IItemState {
   id: number;
-  serialNumber: number;
   isDragged: boolean;
   text: string;
 }
