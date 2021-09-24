@@ -9,7 +9,7 @@ import {
 } from '../../ts/store/reducers/list-reducer';
 
 const mapStateToProps = (state: IState) => {
-  return { items: state.list.items };
+  return { ...state.list };
 };
 
 const mapDispatchToProps = (dispatch: IDispatch) => {

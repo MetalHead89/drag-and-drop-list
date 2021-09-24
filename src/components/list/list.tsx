@@ -3,6 +3,10 @@ import { IList } from '../../ts/interfaces';
 import Item from '../item/item';
 
 const List = (list: IList): JSX.Element => {
+  const customStyles = {
+    height: list.height,
+  };
+
   const items = list.items.map((item) => {
     return (
       <Item
@@ -16,7 +20,11 @@ const List = (list: IList): JSX.Element => {
     );
   });
 
-  return <ul className="list">{items}</ul>;
+  return (
+    <ul className="list" style={customStyles}>
+      {items}
+    </ul>
+  );
 };
 
 export default List;

@@ -17,6 +17,7 @@ interface IListState {
 }
 
 interface IList extends IItemMethods {
+  height: number;
   items: IItem[];
 }
 
