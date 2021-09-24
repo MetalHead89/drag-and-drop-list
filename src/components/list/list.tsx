@@ -8,6 +8,7 @@ const List = (list: IList): JSX.Element => {
       <Item
         key={item.id}
         {...item}
+        setItemHeight={list.setItemHeight}
         dragItem={list.dragItem}
         itemReleased={list.itemReleased}
         itemChangedPosition={list.itemChangedPosition}

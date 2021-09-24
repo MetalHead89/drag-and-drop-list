@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { IItem } from '../../ts/interfaces';
 
 // function handleItemDragEnter(event: React.DragEvent) {
@@ -18,6 +18,14 @@ import { IItem } from '../../ts/interfaces';
 // }
 
 const Item = (item: IItem): JSX.Element => {
+  const itemRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    let height = itemRef.current?.offsetHeight;
+    height = height === undefined ? 0 : height;
+    item.setItemHeight(item.id, height);
+  });
+
   const handleItemDragStart = (event: React.DragEvent) => {
     const target = event.target;
 
@@ -66,6 +74,7 @@ const Item = (item: IItem): JSX.Element => {
 
   return (
     <div
+      ref={itemRef}
       className="item"
       draggable="true"
       // onDrag={handleItemDrag}

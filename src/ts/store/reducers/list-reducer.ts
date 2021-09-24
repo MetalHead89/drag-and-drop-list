@@ -2,11 +2,17 @@ import { IAction, IItemState, IListState } from '../../interfaces';
 
 const config = require('../../config/default.config.json');
 
+const ITEM_DID_MOUNT = 'ITEM-DID-MOUNT';
 const ITEM_IS_DRAG = 'ITEM-IS-DRAG';
 const ITEM_IS_RELEASED = 'ITEM-IS-RELEASED';
 const CHANGED_ORDER_OF_ITEMS = 'CHANGED-ORDER-OF-ITEMS';
 
 const initialState = config.list;
+
+const itemDidMountCreator = (id: number, height: number): IAction => ({
+  type: ITEM_DID_MOUNT,
+  args: { id, height },
+});
 
 const itemIsDragCreator = (id: number): IAction => ({
   type: ITEM_IS_DRAG,
@@ -45,6 +51,17 @@ const listReducer = (
   action: IAction
 ): IListState => {
   switch (action.type) {
+    case ITEM_DID_MOUNT: {
+      debugger;
+      return {
+        ...state,
+        items: state.items.map((item) => {
+          return item.id === action.args.id
+            ? { ...item, height: action.args.height }
+            : item;
+        }),
+      };
+    }
     case ITEM_IS_DRAG: {
       return {
         ...state,
@@ -73,4 +90,9 @@ const listReducer = (
 };
 
 export default listReducer;
-export { itemIsDragCreator, itemIsReleasedCreator, changedOrderOfItemsCreator };
+export {
+  itemIsDragCreator,
+  itemIsReleasedCreator,
+  changedOrderOfItemsCreator,
+  itemDidMountCreator,
+};

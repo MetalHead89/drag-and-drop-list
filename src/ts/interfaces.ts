@@ -21,6 +21,7 @@ interface IList extends IItemMethods {
 }
 
 interface IItemMethods {
+  setItemHeight: (id: number, height: number) => void;
   dragItem: (id: number) => void;
   itemReleased: (id: number) => void;
   itemChangedPosition: (targetId: number) => void;

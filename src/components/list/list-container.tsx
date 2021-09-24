@@ -3,6 +3,7 @@ import { IDispatch, IState } from '../../ts/interfaces';
 import List from './list';
 import {
   changedOrderOfItemsCreator,
+  itemDidMountCreator,
   itemIsDragCreator,
   itemIsReleasedCreator,
 } from '../../ts/store/reducers/list-reducer';
@@ -13,6 +14,9 @@ const mapStateToProps = (state: IState) => {
 
 const mapDispatchToProps = (dispatch: IDispatch) => {
   return {
+    setItemHeight: (id: number, height: number) => {
+      dispatch(itemDidMountCreator(id, height));
+    },
     dragItem: (id: number) => {
       dispatch(itemIsDragCreator(id));
     },
