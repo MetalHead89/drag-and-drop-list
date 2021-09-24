@@ -2,12 +2,17 @@ import { IAction, IItemState, IListState } from '../../interfaces';
 
 const config = require('../../config/default.config.json');
 
+// const LIST_DID_MOUNT = 'LIST-DID-MOUNT';
 const ITEM_DID_MOUNT = 'ITEM-DID-MOUNT';
 const ITEM_IS_DRAG = 'ITEM-IS-DRAG';
 const ITEM_IS_RELEASED = 'ITEM-IS-RELEASED';
 const CHANGED_ORDER_OF_ITEMS = 'CHANGED-ORDER-OF-ITEMS';
 
 const initialState = config.list;
+
+// const listDidMountCreator = (): IAction => ({
+//   type: LIST_DID_MOUNT,
+// });
 
 const itemDidMountCreator = (id: number, height: number): IAction => ({
   type: ITEM_DID_MOUNT,
@@ -28,6 +33,50 @@ const changedOrderOfItemsCreator = (targetId: number): IAction => ({
   type: CHANGED_ORDER_OF_ITEMS,
   args: { targetId },
 });
+
+// const calculateListHeight = (state: IListState): number => {
+//   return state.items.reduce((sum, item) => sum + item.height, 0);
+// };
+
+const setListHeight = (state: IListState): IListState => {
+  const listHeight = state.items.reduce((sum, item) => sum + item.height, 0);
+
+  if (state.height !== listHeight) {
+    return { ...state, height: listHeight };
+  }
+
+  return state;
+};
+
+const setItemHeight = (
+  state: IListState,
+  itemId: number,
+  height: number
+): IListState => {
+  const itemIndex = state.items.findIndex((item) => item.id === itemId);
+  const itemHeight = state.items[itemIndex].height;
+
+  state.items[itemIndex].height = itemHeight !== height ? height : itemHeight;
+
+  return state;
+
+  // const itemIndex = state.items.findIndex((item) => item.id === itemId);
+  // if (itemIndex && state.items[itemIndex].height !== height) {
+  //   state.items[itemIndex].height = height;
+  //   state =
+  // }
+
+  // return {
+  //   ...state,
+  //   items: state.items.map((item) => {
+  //     return item.id === itemId && item.height !== height
+  //       ? { ...item, height: height }
+  //       : item;
+  //   }),
+  // };
+
+  // return { ...modifiedState, height: calculateListHeight(modifiedState) };
+};
 
 function changeOrderOfItems(
   items: IItemState[],
@@ -51,16 +100,17 @@ const listReducer = (
   action: IAction
 ): IListState => {
   switch (action.type) {
+    // case LIST_DID_MOUNT: {
+    //   return {
+    //     ...state,
+    //     height: (state.height = calculateListHeight(state)),
+    //   };
+    // }
     case ITEM_DID_MOUNT: {
-      debugger;
-      return {
-        ...state,
-        items: state.items.map((item) => {
-          return item.id === action.args.id
-            ? { ...item, height: action.args.height }
-            : item;
-        }),
-      };
+      setItemHeight(state, action.args.id, action.args.height);
+      return setListHeight(state);
+      // console.dir(setItemHeight(state, action.args.id, action.args.height));
+      // return setItemHeight(state, action.args.id, action.args.height);
     }
     case ITEM_IS_DRAG: {
       return {
@@ -91,8 +141,9 @@ const listReducer = (
 
 export default listReducer;
 export {
+  // listDidMountCreator,
+  itemDidMountCreator,
   itemIsDragCreator,
   itemIsReleasedCreator,
   changedOrderOfItemsCreator,
-  itemDidMountCreator,
 };
