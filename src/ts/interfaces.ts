@@ -12,6 +12,7 @@ interface IState {
 }
 
 interface IListState {
+  height: number;
   items: IItemState[];
 }
 
@@ -27,6 +28,8 @@ interface IItemMethods {
 
 interface IItemState {
   id: number;
+  top: number;
+  height: number;
   isDragged: boolean;
   text: string;
 }
