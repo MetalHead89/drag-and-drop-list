@@ -1,0 +1,14 @@
+{
+  "itemMargin": 5,
+  "list": {
+    "height": 0,
+    "items": [
+      { "id": 1, "top": 0, "height": 0, "isDragged": false, "text": "item1" },
+      { "id": 2, "top": 0, "height": 0, "isDragged": false, "text": "item2" },
+      { "id": 3, "top": 0, "height": 0, "isDragged": false, "text": "item3" },
+      { "id": 4, "top": 0, "height": 0, "isDragged": false, "text": "item4" },
+      { "id": 5, "top": 0, "height": 0, "isDragged": false, "text": "item5" },
+      { "id": 6, "top": 0, "height": 0, "isDragged": false, "text": "item6" }
+    ]
+  }
+}

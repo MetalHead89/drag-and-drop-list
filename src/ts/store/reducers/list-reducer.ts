@@ -1,19 +1,12 @@
 import { IAction, IItemState, IListState } from '../../interfaces';
+
+const config = require('../../config/default.config.json');
+
 const ITEM_IS_DRAG = 'ITEM-IS-DRAG';
 const ITEM_IS_RELEASED = 'ITEM-IS-RELEASED';
 const CHANGED_ORDER_OF_ITEMS = 'CHANGED-ORDER-OF-ITEMS';
 
-const initialState = {
-  height: 0,
-  items: [
-    { id: 1, top: 0, height: 0, isDragged: false, text: 'item1' },
-    { id: 2, top: 0, height: 0, isDragged: false, text: 'item2' },
-    { id: 3, top: 0, height: 0, isDragged: false, text: 'item3' },
-    { id: 4, top: 0, height: 0, isDragged: false, text: 'item4' },
-    { id: 5, top: 0, height: 0, isDragged: false, text: 'item5' },
-    { id: 6, top: 0, height: 0, isDragged: false, text: 'item6' },
-  ],
-};
+const initialState = config.list;
 
 const itemIsDragCreator = (id: number): IAction => ({
   type: ITEM_IS_DRAG,
