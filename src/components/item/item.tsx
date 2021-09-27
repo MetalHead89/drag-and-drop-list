@@ -18,6 +18,9 @@ import { IItem } from '../../ts/interfaces';
 // }
 
 const Item = (item: IItem): JSX.Element => {
+  const customStyles = {
+    top: item.top,
+  };
   const itemRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -76,6 +79,7 @@ const Item = (item: IItem): JSX.Element => {
     <div
       ref={itemRef}
       className="item"
+      style={customStyles}
       draggable="true"
       // onDrag={handleItemDrag}
       onDragEnter={handleItemDragEnter}

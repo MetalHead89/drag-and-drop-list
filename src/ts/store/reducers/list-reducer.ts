@@ -78,6 +78,20 @@ const setItemHeight = (
   // return { ...modifiedState, height: calculateListHeight(modifiedState) };
 };
 
+const setItemsPositions = (state: IListState): IListState => {
+  let top = 0;
+
+  return {
+    ...state,
+    items: state.items.map((item) => {
+      const modifiedItem = { ...item, top: top };
+      top += item.height;
+
+      return modifiedItem;
+    }),
+  };
+};
+
 function changeOrderOfItems(
   items: IItemState[],
   targetId: number
@@ -108,7 +122,9 @@ const listReducer = (
     // }
     case ITEM_DID_MOUNT: {
       setItemHeight(state, action.args.id, action.args.height);
-      return setListHeight(state);
+      state = setItemsPositions(state);
+      state = setListHeight(state);
+      return state;
       // console.dir(setItemHeight(state, action.args.id, action.args.height));
       // return setItemHeight(state, action.args.id, action.args.height);
     }
