@@ -2,7 +2,6 @@ import { IAction, IItemState, IListState } from '../../interfaces';
 
 const config = require('../../config/default.config.json');
 
-// const LIST_DID_MOUNT = 'LIST-DID-MOUNT';
 const ITEM_DID_MOUNT = 'ITEM-DID-MOUNT';
 const ITEM_IS_DRAG = 'ITEM-IS-DRAG';
 const ITEM_IS_RELEASED = 'ITEM-IS-RELEASED';
